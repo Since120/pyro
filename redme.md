@@ -55,3 +55,12 @@ git push -u origin zone-and-category
 
 Prüfen wo ich bin
 git status
+
+
+
+
+
+mkdir -p ~/projects
+ln -s "/mnt/c/Users/info/Documents/Discord Bot/Pyro" ~/projects/pyro
+cd ~/projects/pyro
+claude

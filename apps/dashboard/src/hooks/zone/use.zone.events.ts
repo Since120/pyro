@@ -8,7 +8,7 @@ import { useSnackbar } from 'notistack';
 // Erweitere die ZoneEvent Typdefinition mit zusätzlichen Feldern
 export interface ZoneEvent extends GraphQLZoneEvent {
   details?: string; // Füge details hinzu
-  error?: string;   // Füge error hinzu
+  error?: string;   // Füge error hinzu (Standardisiert mit CategoryEvent)
 }
 
 const ZONE_EVENT_SUBSCRIPTION = gql`
@@ -65,18 +65,23 @@ export function useZoneEvents({
   const [lastEvent, setLastEvent] = useState<ZoneEvent | null>(null);
   const [isConnected, setIsConnected] = useState(false);
 
-  // Hilfsfunktion für eindeutige Benachrichtigungen
+  // Hilfsfunktion für eindeutige Benachrichtigungen (VERBESSERT)
   const showUniqueNotification = useCallback((id: string, eventType: string, message: string, options: any) => {
-    const key = `${id}-${eventType}-${Date.now().toString().substring(0, 8)}`;
+    // WICHTIG: Einfacher Key ohne Timestamp für konsistente Duplikaterkennung
+    const key = `${id}-${eventType}`;
     
     if (!processedNotifications.has(key)) {
+      console.log(`[ZoneEvent] Zeige Benachrichtigung für ${key}: "${message}"`);
       processedNotifications.add(key);
       enqueueSnackbar(message, options);
       
       // Nach 5 Sekunden aus dem Set entfernen
       setTimeout(() => {
         processedNotifications.delete(key);
+        console.log(`[ZoneEvent] Benachrichtigungssperre für ${key} entfernt`);
       }, 5000);
+    } else {
+      console.log(`[ZoneEvent] Doppelte Benachrichtigung unterdrückt für ${key}: "${message}"`);
     }
   }, [enqueueSnackbar]);
 
@@ -93,6 +98,12 @@ export function useZoneEvents({
       
       // Casting zu unserem erweiterten ZoneEvent Typ
       const eventData = data.data.zoneEvent as ZoneEvent;
+      
+      // WICHTIG: Kompatibilität zwischen message und error-Feld herstellen
+      if (eventData.message && !eventData.error) {
+        eventData.error = eventData.message;
+      }
+      
       setLastEvent(eventData);
       
       // Allgemeiner Handler für alle Events
@@ -105,7 +116,7 @@ export function useZoneEvents({
         return;
       }
       
-      console.log(`[ZoneEvent] Received event: ${eventData.eventType} for ${eventData.name || eventData.id}`);
+      console.log(`[ZoneEvent] Event empfangen: ${eventData.eventType} für ${eventData.name || eventData.id}`);
       
       try {
         // Verarbeitung je nach Event-Typ mit Fehlerbehandlung
@@ -144,11 +155,12 @@ export function useZoneEvents({
             
           case 'error':
             if (onError) onError(eventData);
-            if (!disableDefaultNotifications && eventData.message) {
+            // WICHTIG: Nutze das standardisierte error-Feld, fallback auf message
+            if (!disableDefaultNotifications && (eventData.error || eventData.message)) {
               showUniqueNotification(
                 eventData.id,
                 'error',
-                `Fehler: ${eventData.message}`,
+                `Fehler: ${eventData.error || eventData.message}`,
                 { variant: 'error', autoHideDuration: 8000 }
               );
             }
@@ -202,11 +214,12 @@ export function useZoneEvents({
                       { variant: 'warning', autoHideDuration: 10000 }
                     );
                   }
-                } else if (eventData.message) {
+                } else if (eventData.error || eventData.message) {
+                  // WICHTIG: Standardisierte Fehlerfeld-Verwendung
                   showUniqueNotification(
                     eventData.id,
                     'rateLimit',
-                    eventData.message,
+                    eventData.error || eventData.message,
                     { variant: 'warning', autoHideDuration: 8000 }
                   );
                 } else {
@@ -218,7 +231,7 @@ export function useZoneEvents({
                   );
                 }
               } catch (error) {
-                console.error('Error parsing rate limit details:', error);
+                console.error('Fehler beim Parsen der Rate-Limit-Details:', error);
                 showUniqueNotification(
                   eventData.id,
                   'rateLimit',
@@ -230,10 +243,10 @@ export function useZoneEvents({
             break;
             
           default:
-            console.log(`Unhandled event type: ${eventData.eventType}`);
+            console.log(`Unbekannter Event-Typ: ${eventData.eventType}`);
         }
       } catch (error) {
-        console.error('Error handling zone event:', error);
+        console.error('Fehler bei der Verarbeitung des Zone-Events:', error);
       }
     }
   });

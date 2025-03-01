@@ -1,6 +1,4 @@
-// Bereinigte Version von use.update.categories.ts
-// Entfernt die doppelte Subscription
-
+// apps/dashboard/src/hooks/categories/use.update.categories.ts
 import { useMutation } from '@apollo/client';
 import {
   UpdateCategoryDocument,

@@ -1,5 +1,4 @@
-// Bereinigte und optimierte Version von edit.category.tsx
-
+// apps/dashboard/src/components/dashboard/category/edit/edit.category.tsx
 import React, { useState, useEffect } from 'react';
 import {
   Box,
@@ -64,6 +63,9 @@ const EditCategoryModal: React.FC<EditCategoryModalProps> = ({ open, onClose, on
   const [queueStatusMessage, setQueueStatusMessage] = useState<string | null>(null);
   const [shouldCloseModal, setShouldCloseModal] = useState(false);
 
+  // Prozessverfolgungs-Set für bereits verarbeitete Events
+  const [processedEvents] = useState<Set<string>>(new Set());
+
   // Kategoriebearbeitung mit Event-Tracking
   useEffect(() => {
     if (shouldCloseModal) {
@@ -76,39 +78,37 @@ const EditCategoryModal: React.FC<EditCategoryModalProps> = ({ open, onClose, on
 
   const { updateCategory, deleteCategory } = useUpdateCategory();
 
+  // Helper für Event-Tracking (verhindert Duplikate)
+  const trackEvent = (id: string, eventType: string): boolean => {
+    const key = `${id}-${eventType}`;
+    if (processedEvents.has(key)) {
+      return false; // Event bereits verarbeitet
+    }
+    
+    // Event als verarbeitet markieren
+    processedEvents.add(key);
+    
+    // Nach 10 Sekunden aus dem Set entfernen
+    setTimeout(() => {
+      processedEvents.delete(key);
+    }, 10000);
+    
+    return true; // Neues Event
+  };
+
   // Event-Überwachung für lokale UI-Updates
   useCategoryEvents({
     watchId: pendingCategoryId,
-    disableDefaultNotifications: true, // Keine eigenen Benachrichtigungen hier!
-    onQueued: (event) => {
-      setIsQueuedOperation(true);
-      
-      // Informationen über die Warteschlange anzeigen
-      if (event.details) {
-        try {
-          const details = JSON.parse(event.details);
-          if (details.estimatedDelay) {
-            const delayMinutes = Math.ceil(details.estimatedDelay / 60000);
-            if (delayMinutes > 0) {
-              setQueueStatusMessage(
-                `Änderung wurde in die Warteschlange eingereiht. Geschätzte Wartezeit: ${delayMinutes} Minute(n).`
-              );
-            }
-          }
-        } catch (error) {
-          console.error('Error parsing queue details:', error);
-        }
-      }
-      
-      // Modal nach kurzer Verzögerung schließen
-      setTimeout(() => {
-        setShouldCloseModal(true);
-      }, 1500);
+    disableDefaultNotifications: false, // Default-Benachrichtigungen aktivieren
+    
+    onUpdateConfirmed: (event) => {
+      setPendingCategoryId(null);
+      setIsQueuedOperation(false);
+      setShouldCloseModal(true);
     },
+    
     onRateLimit: (event) => {
       setIsQueuedOperation(true);
-      
-      // Informationen zum Rate-Limit anzeigen
       if (event.details) {
         try {
           const details = JSON.parse(event.details);
@@ -122,27 +122,12 @@ const EditCategoryModal: React.FC<EditCategoryModalProps> = ({ open, onClose, on
           console.error('Error parsing rate limit details:', error);
         }
       }
-      
-      // Bei Rate-Limit schließen wir das Modal nach kurzer Verzögerung
       setTimeout(() => {
         setShouldCloseModal(true);
       }, 1500);
     },
-    onUpdateConfirmed: (event) => {
-      setPendingCategoryId(null);
-      setIsQueuedOperation(false);
-      
-      // Erfolgsbenachrichtigung anzeigen
-      enqueueSnackbar(`Kategorie "${event.name}" wurde erfolgreich in Discord aktualisiert`, { 
-        variant: 'success',
-        autoHideDuration: 5000 
-      });
-      
-      // Bei Bestätigung schließen
-      setShouldCloseModal(true);
-    },
-    onError: () => {
-      // Bei Fehler Kategorie-ID zurücksetzen, aber Modal nicht schließen
+    
+    onError: (event) => {
       setPendingCategoryId(null);
       setIsQueuedOperation(false);
     }
@@ -178,8 +163,6 @@ const EditCategoryModal: React.FC<EditCategoryModalProps> = ({ open, onClose, on
         setPendingCategoryId(result.id);
         setIsQueuedOperation(true);
         
-        // Kein direktes Schließen hier - wir warten auf die Events
-        
         // Ursprüngliches onSave bleibt erhalten
         if (onSave) {
           onSave({
@@ -193,7 +176,6 @@ const EditCategoryModal: React.FC<EditCategoryModalProps> = ({ open, onClose, on
         }
       }
     },
-    // Keine onFinally Hook, wir lassen das Modal selbst entscheiden, wann es geschlossen wird
   });
 
   const handleDelete = async () => {

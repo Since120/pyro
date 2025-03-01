@@ -34,12 +34,18 @@ export function handleCategoryUpdated(discordClient: Client) {
       
       if (!category) {
         logger.error('❌ Kategorie nicht gefunden:', payload.discordCategoryId);
-        await redisPubSub.publish('categoryUpdateError', {
-          apiCategoryId: payload.id,
-          error: 'Discord category not found',
-          originalPayload: payload,
-          timestamp: new Date().toISOString()
-        });
+        
+        // Fehler als standardisiertes Event zurücksenden
+        await redisPubSub.publish('categoryEvent', {
+          id: payload.id,
+          guildId: payload.guildId,
+          name: payload.name,
+          discordCategoryId: payload.discordCategoryId,
+          timestamp: new Date().toISOString(),
+          eventType: 'error',
+          error: 'Discord category not found'
+        } as CategoryEvent);
+        
         return;
       }
 
@@ -58,15 +64,18 @@ export function handleCategoryUpdated(discordClient: Client) {
       if (category.name === payload.name && !isDeletedInDiscord) {
         logger.info('✅ Keine Namensänderung erforderlich');
         
-        // Trotzdem eine Bestätigung senden, dass alles ok ist
-        await redisPubSub.publish('categoryUpdateConfirmed', {
-          apiCategoryId: payload.id,
-          discordCategoryId: payload.discordCategoryId,
+        // WICHTIG: Erfolgsbestätigung als standardisiertes Event zurücksenden
+        await redisPubSub.publish('categoryEvent', {
+          id: payload.id,
           guildId: payload.guildId,
           name: payload.name,
-          noChangeNeeded: true,
-          timestamp: new Date().toISOString()
-        });
+          discordCategoryId: payload.discordCategoryId,
+          timestamp: new Date().toISOString(),
+          eventType: 'updateConfirmed',
+          details: JSON.stringify({
+            noChangeNeeded: true
+          })
+        } as CategoryEvent);
         
         return;
       }
@@ -79,14 +88,15 @@ export function handleCategoryUpdated(discordClient: Client) {
 
       logger.info(`✅ Kategorie ${payload.discordCategoryId} aktualisiert: "${payload.name}"`);
       
-      // 5. Erfolgsbestätigung senden
-      await redisPubSub.publish('categoryUpdateConfirmed', {
-        apiCategoryId: payload.id,
-        discordCategoryId: payload.discordCategoryId,
+      // 5. WICHTIG: Erfolgsbestätigung als standardisiertes Event zurücksenden
+      await redisPubSub.publish('categoryEvent', {
+        id: payload.id,
         guildId: payload.guildId,
         name: payload.name,
-        timestamp: new Date().toISOString()
-      });
+        discordCategoryId: payload.discordCategoryId,
+        timestamp: new Date().toISOString(),
+        eventType: 'updateConfirmed'
+      } as CategoryEvent);
 
       // 6. Bei Löschung in Discord
       if (isDeletedInDiscord) {
@@ -97,12 +107,16 @@ export function handleCategoryUpdated(discordClient: Client) {
     } catch (error: any) {
       logger.error('❌ Update fehlgeschlagen:', error);
       
-      await redisPubSub.publish('categoryUpdateError', {
-        apiCategoryId: payload.id,
-        error: error.message,
-        originalPayload: payload,
-        timestamp: new Date().toISOString()
-      });
+      // Fehler als standardisiertes Event zurücksenden
+      await redisPubSub.publish('categoryEvent', {
+        id: payload.id,
+        guildId: payload.guildId || '',
+        name: payload.name || '',
+        discordCategoryId: payload.discordCategoryId,
+        timestamp: new Date().toISOString(),
+        eventType: 'error',
+        error: error.message || 'Unknown error'
+      } as CategoryEvent);
     }
   });
 }

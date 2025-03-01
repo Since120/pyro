@@ -53,19 +53,26 @@ export class RedisPubSubService {
     const subscriptionHandler = () => {
       if (this.isSubscribed) return;
       
-      this.subscriber.subscribe('categoryCreated', (err) => {
-        if (err) {
-          this.logger.error('Abonnement fehlgeschlagen', err);
-        } else {
-          this.isSubscribed = true;
-          this.logger.log('🔔 Erfolgreich auf categoryCreated abonniert');
-        }
+      // Abonniere BEIDE wichtigen Event-Kanäle
+      const channels = ['categoryEvent', 'zoneEvent'];
+      
+      channels.forEach(channel => {
+        this.subscriber.subscribe(channel, (err) => {
+          if (err) {
+            this.logger.error(`Abonnement für ${channel} fehlgeschlagen`, err);
+          } else {
+            this.isSubscribed = true;
+            this.logger.log(`🔔 Erfolgreich auf ${channel} abonniert`);
+          }
+        });
       });
     };
 
     this.subscriber
       .once('ready', subscriptionHandler)
       .on('message', (channel: string, message: string) => {
+        // Debug-Logging für empfangene Nachrichten
+        this.logger.debug(`📬 Redis Nachricht auf Kanal ${channel} empfangen: ${message.substring(0, 100)}${message.length > 100 ? '...' : ''}`);
       });
 
     this.publisher.on('ready', () => {
@@ -83,10 +90,13 @@ export class RedisPubSubService {
     try {
       const stringified = JSON.stringify(payload, null, 2);
       
+      this.logger.log(`🚀 Sende an Redis ${channel}: ${stringified.substring(0, 200)}...`);
+      
       // Legacy-Logging beibehalten
       console.info(`[Legacy] Sende an Redis ${channel}:`, payload);
   
       await this.pubSub.publish(channel, payload);
+      this.logger.log(`✅ Event erfolgreich an Redis ${channel} gesendet`);
     } catch (err) {
       this.logger.error(`🚨 Fehler beim Senden an ${channel}: ${err.message}`, err.stack);
       console.error('[Legacy] Fehler:', err);
@@ -101,8 +111,11 @@ export class RedisPubSubService {
     channel: K,
     callback: (payload: PubSubEvents[K]) => void
   ): PubSubSubscription<PubSubEvents[K]> {
+    this.logger.log(`🔔 Starte Abonnement für ${channel}`);
+    
     this.pubSub.subscribe(channel, (payload: PubSubEvents[K]) => {
       // Beide Logging-Varianten
+      this.logger.log(`📥 Event auf ${channel} empfangen`);
       callback(payload);
     });
 

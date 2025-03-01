@@ -1,4 +1,4 @@
-// Datei: apps/dashboard/src/hooks/categories/use.category.events.ts
+// apps/dashboard/src/hooks/categories/use.category.events.ts
 
 import { useEffect, useState, useCallback } from 'react';
 import { useSubscription, gql } from '@apollo/client';
@@ -30,12 +30,12 @@ export interface CategoryEventHookOptions {
   onUpdateConfirmed?: (event: CategoryEvent) => void;
   onRateLimit?: (event: CategoryEvent) => void;
   onDeleteConfirmed?: (event: CategoryEvent) => void;
-  onData?: (event: CategoryEvent) => void; // Neuer allgemeiner Handler für alle Event-Typen
-  disableDefaultNotifications?: boolean; // Parameter, um standardmäßige Snackbars zu deaktivieren
-  watchId?: string | null;
+  onData?: (event: CategoryEvent) => void; // Allgemeiner Handler für alle Event-Typen
+  disableDefaultNotifications?: boolean; // Standardbenachrichtigungen deaktivieren
+  watchId?: string | null; // Spezifische Kategorie-ID überwachen
 }
 
-// Vermeidet Duplikate bei Benachrichtigungen
+// Globales Set für bereits verarbeitete Benachrichtigungen
 const processedNotifications = new Set<string>();
 
 /**
@@ -52,25 +52,30 @@ export function useCategoryEvents({
   onRateLimit,
   onDeleteConfirmed,
   onData,
-  disableDefaultNotifications = false, // Standardmäßig Benachrichtigungen aktivieren
+  disableDefaultNotifications = false,
   watchId = null
 }: CategoryEventHookOptions = {}) {
   const { enqueueSnackbar } = useSnackbar();
   const [lastEvent, setLastEvent] = useState<CategoryEvent | null>(null);
   const [isConnected, setIsConnected] = useState(false);
 
-  // Hilfsfunktion für eindeutige Benachrichtigungen
+  // Hilfsfunktion für eindeutige Benachrichtigungen (VERBESSERT)
   const showUniqueNotification = useCallback((id: string, eventType: string, message: string, options: any) => {
-    const key = `${id}-${eventType}-${Date.now().toString().substring(0, 8)}`;
+    // WICHTIG: Einfacher Key ohne Timestamp für konsistente Duplikaterkennung
+    const key = `${id}-${eventType}`;
     
     if (!processedNotifications.has(key)) {
+      console.log(`[CategoryEvent] Zeige Benachrichtigung für ${key}: "${message}"`);
       processedNotifications.add(key);
       enqueueSnackbar(message, options);
       
       // Nach 5 Sekunden aus dem Set entfernen
       setTimeout(() => {
         processedNotifications.delete(key);
+        console.log(`[CategoryEvent] Benachrichtigungssperre für ${key} entfernt`);
       }, 5000);
+    } else {
+      console.log(`[CategoryEvent] Doppelte Benachrichtigung unterdrückt für ${key}: "${message}"`);
     }
   }, [enqueueSnackbar]);
 
@@ -98,7 +103,7 @@ export function useCategoryEvents({
         return;
       }
       
-      console.log(`[CategoryEvent] Received event: ${eventData.eventType} for ${eventData.name || eventData.id}`);
+      console.log(`[CategoryEvent] Event empfangen: ${eventData.eventType} für ${eventData.name || eventData.id}`);
       
       try {
         // Verarbeitung je nach Event-Typ mit Fehlerbehandlung
@@ -157,7 +162,8 @@ export function useCategoryEvents({
               showUniqueNotification(
                 eventData.id,
                 'updateConfirmed',
-                `Kategorie "${eventData.name}" wurde erfolgreich in Discord aktualisiert`,
+                // WICHTIG: Verbesserte Nachricht - "Änderung" statt "Kategorie"
+                `Änderung an "${eventData.name}" wurde erfolgreich in Discord übernommen`,
                 { variant: 'success', autoHideDuration: 5000 }
               );
             }
@@ -186,7 +192,8 @@ export function useCategoryEvents({
                   const delayMinutes = details.delayMinutes || Math.ceil((details.delayMs || 0) / 60000);
                   
                   if (delayMinutes > 0) {
-                    const message = `Discord Rate Limit: Kategorie "${eventData.name}" wird in ${delayMinutes} Minute(n) aktualisiert`;
+                    // WICHTIG: Verbesserte Nachricht - "Änderung" statt "Kategorie"
+                    const message = `Discord Rate Limit: Änderung an "${eventData.name}" wird in ${delayMinutes} Minute(n) durchgeführt`;
                     
                     showUniqueNotification(
                       eventData.id,
@@ -203,19 +210,21 @@ export function useCategoryEvents({
                     { variant: 'warning', autoHideDuration: 8000 }
                   );
                 } else {
+                  // WICHTIG: Verbesserte Nachricht - "Änderung" statt "Kategorie"
                   showUniqueNotification(
                     eventData.id,
                     'rateLimit',
-                    `Discord Rate Limit erreicht für Kategorie "${eventData.name}"`,
+                    `Discord Rate Limit erreicht für Änderung an "${eventData.name}"`,
                     { variant: 'warning', autoHideDuration: 8000 }
                   );
                 }
               } catch (error) {
-                console.error('Error parsing rate limit details:', error);
+                console.error('Fehler beim Parsen der Rate-Limit-Details:', error);
                 showUniqueNotification(
                   eventData.id,
                   'rateLimit',
-                  `Discord Rate Limit erreicht für Kategorie "${eventData.name}"`,
+                  // WICHTIG: Verbesserte Nachricht - "Änderung" statt "Kategorie"
+                  `Discord Rate Limit erreicht für Änderung an "${eventData.name}"`,
                   { variant: 'warning', autoHideDuration: 8000 }
                 );
               }
@@ -223,10 +232,10 @@ export function useCategoryEvents({
             break;
             
           default:
-            console.log(`Unhandled event type: ${eventData.eventType}`);
+            console.log(`Unbehandelter Event-Typ: ${eventData.eventType}`);
         }
       } catch (error) {
-        console.error('Error handling category event:', error);
+        console.error('Fehler bei der Verarbeitung des Kategorie-Events:', error);
       }
     }
   });

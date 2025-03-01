@@ -28,18 +28,24 @@ const processedEvents = new Set<string>();
 
 // Hilfsfunktion zum Verfolgen von Events
 const trackEvent = (id: string, eventType: string): boolean => {
+  // Eindeutiger Key ohne Timestamp für konsistente Duplikaterkennung
   const key = `${id}-${eventType}`;
+  
   if (processedEvents.has(key)) {
+    console.log(`[DashboardNotificationWrapper] Event ${key} bereits verarbeitet, überspringe`);
     return false; // Event bereits verarbeitet
   }
+  
+  console.log(`[DashboardNotificationWrapper] Neues Event ${key} wird verarbeitet`);
   
   // Event als verarbeitet markieren
   processedEvents.add(key);
   
-  // Nach 10 Sekunden aus dem Set entfernen
+  // Nach 5 Sekunden aus dem Set entfernen (synchronisiert mit Hook-Timeouts)
   setTimeout(() => {
     processedEvents.delete(key);
-  }, 10000);
+    console.log(`[DashboardNotificationWrapper] Tracking für ${key} entfernt`);
+  }, 5000);
   
   return true; // Neues Event
 };
@@ -72,7 +78,8 @@ const DashboardNotificationWrapper: React.FC<React.PropsWithChildren> = ({ child
     onUpdateConfirmed: (event) => {
       // Benachrichtigung NUR, wenn das Event noch nicht verarbeitet wurde
       if (trackEvent(event.id, 'updateConfirmed')) {
-        showSuccess(`Kategorie "${event.name}" wurde erfolgreich in Discord aktualisiert`);
+        // WICHTIG: Verbesserte Nachricht - "Änderung" statt "Kategorie"
+        showSuccess(`Änderung an "${event.name}" wurde erfolgreich in Discord übernommen`);
       }
     },
     onConfirmation: (event) => {
@@ -91,7 +98,8 @@ const DashboardNotificationWrapper: React.FC<React.PropsWithChildren> = ({ child
             const delayMinutes = details.delayMinutes || Math.ceil((details.delayMs || 0) / 60000);
             
             if (delayMinutes > 0) {
-              showWarning(`Discord Rate Limit: Kategorie "${event.name}" wird in ${delayMinutes} Minute(n) aktualisiert`);
+              // WICHTIG: Verbesserte Nachricht - "Änderung" statt "Kategorie"
+              showWarning(`Discord Rate Limit: Änderung an "${event.name}" wird in ${delayMinutes} Minute(n) durchgeführt`);
             }
           }
         } catch (error) {
@@ -132,8 +140,9 @@ const DashboardNotificationWrapper: React.FC<React.PropsWithChildren> = ({ child
       }
     },
     onError: (event) => {
-      if (trackEvent(event.id, 'error') && event.message) {
-        showError(`Fehler: ${event.message}`);
+      // WICHTIG: Standardisierte Nutzung von error und message
+      if (trackEvent(event.id, 'error') && (event.error || event.message)) {
+        showError(`Fehler: ${event.error || event.message}`);
       }
     }
   });
