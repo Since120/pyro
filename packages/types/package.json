@@ -1,0 +1,19 @@
+{
+	"name": "pyro-types",
+	"version": "1.0.0",
+	"description": "Shared TypeScript types for the Pyro monorepo",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+	  "build": "tsc",
+	  "clean": "rimraf dist",
+	  "dev": "tsc --watch"
+	},
+	"dependencies": {
+	  "graphql": "^16.6.0"
+	},
+	"devDependencies": {
+	  "typescript": "^5.0.4",
+	  "rimraf": "^5.0.0"
+	}
+  }

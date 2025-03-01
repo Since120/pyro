@@ -1,0 +1,721 @@
+2025-02-21T23:06:48.135Z [info]: Bot ist online
+2025-02-21T23:06:48.205Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:06:48.205Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:08:19.358Z [info]: Bot ist online
+2025-02-21T23:08:19.419Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:08:19.420Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:08:41.633Z [info]: Bot ist online
+2025-02-21T23:08:41.697Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:08:41.698Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:16:58.779Z [info]: Bot ist online
+2025-02-21T23:16:58.840Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:16:58.841Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:17:14.967Z [info]: Bot ist online
+2025-02-21T23:17:15.065Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:17:15.065Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:24:31.747Z [info]: Bot ist online
+2025-02-21T23:24:31.840Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:24:31.841Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:26:53.565Z [info]: Redis client connected.
+2025-02-21T23:26:53.598Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:26:55.297Z [info]: Bot ist online
+2025-02-21T23:26:55.364Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:26:55.364Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:27:33.890Z [info]: Redis client connected.
+2025-02-21T23:27:33.933Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:27:34.489Z [info]: Bot ist online
+2025-02-21T23:27:34.545Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:27:34.546Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:30:33.750Z [info]: Redis client connected.
+2025-02-21T23:30:33.792Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:30:34.473Z [info]: Bot ist online
+2025-02-21T23:30:34.540Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:30:34.540Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:32:35.738Z [info]: Redis client connected.
+2025-02-21T23:32:35.780Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:32:36.253Z [info]: Bot ist online
+2025-02-21T23:32:36.255Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:32:36.313Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:32:36.314Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:32:56.705Z [warn]: Redis retry attempt 1. Retrying in 50 ms.
+2025-02-21T23:32:56.767Z [info]: Redis client connected.
+2025-02-21T23:32:56.769Z [warn]: Redis retry attempt 2. Retrying in 100 ms.
+2025-02-21T23:32:56.877Z [warn]: Redis retry attempt 3. Retrying in 150 ms.
+2025-02-21T23:32:57.029Z [warn]: Redis retry attempt 4. Retrying in 200 ms.
+2025-02-21T23:32:57.231Z [warn]: Redis retry attempt 5. Retrying in 250 ms.
+2025-02-21T23:32:57.497Z [warn]: Redis retry attempt 6. Retrying in 300 ms.
+2025-02-21T23:32:57.809Z [warn]: Redis retry attempt 7. Retrying in 350 ms.
+2025-02-21T23:32:58.170Z [info]: Redis client connected.
+2025-02-21T23:32:58.173Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:32:58.173Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:35:28.855Z [info]: Redis client connected.
+2025-02-21T23:35:28.888Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:35:29.456Z [info]: Bot ist online
+2025-02-21T23:35:29.458Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:35:29.517Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:35:29.517Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:36:24.046Z [info]: Redis client connected.
+2025-02-21T23:36:24.086Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:36:24.736Z [info]: Bot ist online
+2025-02-21T23:36:24.738Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:36:24.796Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:36:24.797Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:38:25.332Z [info]: Redis client connected.
+2025-02-21T23:38:25.360Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:38:26.077Z [info]: Bot ist online
+2025-02-21T23:38:26.079Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:38:26.137Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:38:26.137Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:38:32.013Z [info]: Redis client connected.
+2025-02-21T23:38:32.049Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:38:32.580Z [info]: Bot ist online
+2025-02-21T23:38:32.583Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:38:32.639Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:38:32.640Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:38:41.180Z [info]: Redis client connected.
+2025-02-21T23:38:41.212Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:38:41.826Z [info]: Bot ist online
+2025-02-21T23:38:41.829Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:38:41.887Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:38:41.888Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:43:27.149Z [info]: Redis client connected.
+2025-02-21T23:43:27.193Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:43:27.907Z [info]: Bot ist online
+2025-02-21T23:43:27.911Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:43:27.969Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:43:27.970Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:52:00.777Z [info]: Redis client connected.
+2025-02-21T23:52:00.822Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:52:01.628Z [info]: Bot ist online
+2025-02-21T23:52:01.632Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:52:01.689Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:52:01.689Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-21T23:52:31.065Z [info]: Redis client connected.
+2025-02-21T23:52:31.100Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:52:31.702Z [info]: Bot ist online
+2025-02-21T23:52:31.705Z [info]: Channel mapping rebuilt successfully.
+2025-02-21T23:52:31.761Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-21T23:52:31.761Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T09:22:51.334Z [info]: Redis client connected.
+2025-02-22T09:22:51.365Z [error]: ApolloError: request to http://localhost:3002/graphql failed, reason: 
+    at new ApolloError (C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\@apollo+client@3.13.1_@type_9611fc393571d8aefdbcc3745df497a8\node_modules\@apollo\client\errors\index.js:40:28)
+    at C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\@apollo+client@3.13.1_@type_9611fc393571d8aefdbcc3745df497a8\node_modules\@apollo\client\core\QueryManager.js:821:71
+    at both (C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\@apollo+client@3.13.1_@type_9611fc393571d8aefdbcc3745df497a8\node_modules\@apollo\client\utilities\observables\asyncMap.js:22:31)
+    at C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\@apollo+client@3.13.1_@type_9611fc393571d8aefdbcc3745df497a8\node_modules\@apollo\client\utilities\observables\asyncMap.js:11:72
+    at new Promise (<anonymous>)
+    at Object.then (C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\@apollo+client@3.13.1_@type_9611fc393571d8aefdbcc3745df497a8\node_modules\@apollo\client\utilities\observables\asyncMap.js:11:24)
+    at Object.error (C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\@apollo+client@3.13.1_@type_9611fc393571d8aefdbcc3745df497a8\node_modules\@apollo\client\utilities\observables\asyncMap.js:24:49)
+    at notifySubscription (C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\zen-observable@0.8.15\node_modules\zen-observable\lib\Observable.js:140:18)
+    at onNotify (C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\zen-observable@0.8.15\node_modules\zen-observable\lib\Observable.js:179:3)
+    at SubscriptionObserver.error (C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\zen-observable@0.8.15\node_modules\zen-observable\lib\Observable.js:240:7)
+2025-02-22T09:22:52.016Z [info]: Bot ist online
+2025-02-22T09:22:52.021Z [error]: ApolloError: request to http://localhost:3002/graphql failed, reason: 
+    at new ApolloError (C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\@apollo+client@3.13.1_@type_9611fc393571d8aefdbcc3745df497a8\node_modules\@apollo\client\errors\index.js:40:28)
+    at C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\@apollo+client@3.13.1_@type_9611fc393571d8aefdbcc3745df497a8\node_modules\@apollo\client\core\QueryManager.js:821:71
+    at both (C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\@apollo+client@3.13.1_@type_9611fc393571d8aefdbcc3745df497a8\node_modules\@apollo\client\utilities\observables\asyncMap.js:22:31)
+    at C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\@apollo+client@3.13.1_@type_9611fc393571d8aefdbcc3745df497a8\node_modules\@apollo\client\utilities\observables\asyncMap.js:11:72
+    at new Promise (<anonymous>)
+    at Object.then (C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\@apollo+client@3.13.1_@type_9611fc393571d8aefdbcc3745df497a8\node_modules\@apollo\client\utilities\observables\asyncMap.js:11:24)
+    at Object.error (C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\@apollo+client@3.13.1_@type_9611fc393571d8aefdbcc3745df497a8\node_modules\@apollo\client\utilities\observables\asyncMap.js:24:49)
+    at notifySubscription (C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\zen-observable@0.8.15\node_modules\zen-observable\lib\Observable.js:140:18)
+    at onNotify (C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\zen-observable@0.8.15\node_modules\zen-observable\lib\Observable.js:179:3)
+    at SubscriptionObserver.error (C:\Users\info\Documents\Discord Bot\Pyro-monorepo-1.0\node_modules\.pnpm\zen-observable@0.8.15\node_modules\zen-observable\lib\Observable.js:240:7)
+2025-02-22T09:22:52.099Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T09:22:52.100Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T09:24:26.217Z [info]: Redis client connected.
+2025-02-22T09:24:26.303Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:24:26.935Z [info]: Bot ist online
+2025-02-22T09:24:26.938Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:24:26.994Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T09:24:26.995Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T09:30:05.828Z [info]: Redis client connected.
+2025-02-22T09:30:05.874Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:30:06.544Z [info]: Bot ist online
+2025-02-22T09:30:06.548Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:30:06.604Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T09:30:06.604Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T09:32:54.119Z [info]: Redis client connected.
+2025-02-22T09:32:54.156Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:32:54.708Z [info]: Bot ist online
+2025-02-22T09:32:54.713Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:32:54.773Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T09:32:54.773Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T09:35:41.203Z [info]: Redis client connected.
+2025-02-22T09:35:41.251Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:35:41.729Z [info]: Bot ist online
+2025-02-22T09:35:41.735Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:35:41.792Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T09:35:41.792Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T09:39:05.000Z [info]: Redis client connected.
+2025-02-22T09:39:05.038Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:39:05.893Z [info]: Bot ist online
+2025-02-22T09:39:05.898Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:39:05.955Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T09:39:05.955Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T09:42:33.163Z [info]: Redis client connected.
+2025-02-22T09:42:33.209Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:42:33.805Z [info]: Bot ist online
+2025-02-22T09:42:33.809Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:42:33.865Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T09:42:33.866Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T09:43:27.302Z [info]: Redis client connected.
+2025-02-22T09:43:27.340Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:43:27.968Z [info]: Bot ist online
+2025-02-22T09:43:27.973Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:43:28.029Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T09:43:28.030Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T09:48:47.629Z [info]: Redis client connected.
+2025-02-22T09:48:47.684Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:48:48.396Z [info]: Bot ist online
+2025-02-22T09:48:48.400Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:48:48.456Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T09:48:48.457Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T09:49:06.127Z [info]: Redis client connected.
+2025-02-22T09:49:06.164Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:49:09.940Z [info]: Redis client connected.
+2025-02-22T09:49:09.978Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:49:10.721Z [info]: Bot ist online
+2025-02-22T09:49:10.725Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:49:10.782Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T09:49:10.783Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T09:49:25.965Z [info]: Redis client connected.
+2025-02-22T09:49:26.002Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:49:26.568Z [info]: Bot ist online
+2025-02-22T09:49:26.573Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:49:26.642Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T09:49:26.643Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T09:50:52.193Z [info]: Redis client connected.
+2025-02-22T09:50:52.231Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:50:52.756Z [info]: Bot ist online
+2025-02-22T09:50:52.760Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:50:52.821Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T09:50:52.821Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T09:51:08.004Z [info]: Redis client connected.
+2025-02-22T09:51:08.042Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:51:08.654Z [info]: Bot ist online
+2025-02-22T09:51:08.658Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:51:08.716Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T09:51:08.716Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T09:51:30.146Z [info]: Redis client connected.
+2025-02-22T09:51:30.183Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:51:30.780Z [info]: Bot ist online
+2025-02-22T09:51:30.785Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:51:30.842Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T09:51:30.842Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T09:52:58.439Z [info]: Redis client connected.
+2025-02-22T09:52:58.475Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:52:59.171Z [info]: Bot ist online
+2025-02-22T09:52:59.175Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T09:52:59.244Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T09:52:59.244Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T10:03:50.428Z [info]: Redis client connected.
+2025-02-22T10:03:50.473Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:03:51.065Z [info]: Bot ist online
+2025-02-22T10:03:51.069Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:03:51.127Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T10:03:51.127Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T10:06:17.614Z [info]: Redis client connected.
+2025-02-22T10:06:17.650Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:06:18.270Z [info]: Bot ist online
+2025-02-22T10:06:18.274Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:06:18.331Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T10:06:18.332Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T10:09:47.782Z [info]: Redis client connected.
+2025-02-22T10:09:47.828Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:09:48.535Z [info]: Bot ist online
+2025-02-22T10:09:48.539Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:09:48.597Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T10:09:48.598Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T10:10:02.622Z [info]: Redis client connected.
+2025-02-22T10:10:02.658Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:10:03.323Z [info]: Bot ist online
+2025-02-22T10:10:03.328Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:10:03.385Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T10:10:03.386Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T10:15:46.417Z [info]: Redis client connected.
+2025-02-22T10:15:46.463Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:15:46.999Z [info]: Bot ist online
+2025-02-22T10:15:47.004Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:15:47.065Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T10:15:47.066Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T10:15:58.932Z [info]: Redis client connected.
+2025-02-22T10:15:58.969Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:15:59.606Z [info]: Bot ist online
+2025-02-22T10:15:59.611Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:15:59.667Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T10:15:59.667Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T10:21:00.089Z [warn]: Redis retry attempt 1. Retrying in 50 ms.
+2025-02-22T10:21:00.156Z [info]: Redis client connected.
+2025-02-22T10:21:00.158Z [warn]: Redis retry attempt 2. Retrying in 100 ms.
+2025-02-22T10:21:00.265Z [warn]: Redis retry attempt 3. Retrying in 150 ms.
+2025-02-22T10:21:00.417Z [warn]: Redis retry attempt 4. Retrying in 200 ms.
+2025-02-22T10:21:00.619Z [warn]: Redis retry attempt 5. Retrying in 250 ms.
+2025-02-22T10:21:00.885Z [warn]: Redis retry attempt 6. Retrying in 300 ms.
+2025-02-22T10:21:01.195Z [warn]: Redis retry attempt 7. Retrying in 350 ms.
+2025-02-22T10:21:01.558Z [warn]: Redis retry attempt 8. Retrying in 400 ms.
+2025-02-22T10:21:01.962Z [warn]: Redis retry attempt 9. Retrying in 450 ms.
+2025-02-22T10:21:02.427Z [info]: Redis client connected.
+2025-02-22T10:21:02.432Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:21:02.432Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:22:39.836Z [warn]: Redis retry attempt 1. Retrying in 50 ms.
+2025-02-22T10:22:39.890Z [info]: Redis client connected.
+2025-02-22T10:22:39.891Z [warn]: Redis retry attempt 2. Retrying in 100 ms.
+2025-02-22T10:22:40.000Z [warn]: Redis retry attempt 3. Retrying in 150 ms.
+2025-02-22T10:22:40.153Z [warn]: Redis retry attempt 4. Retrying in 200 ms.
+2025-02-22T10:22:40.354Z [warn]: Redis retry attempt 5. Retrying in 250 ms.
+2025-02-22T10:22:40.620Z [warn]: Redis retry attempt 6. Retrying in 300 ms.
+2025-02-22T10:22:40.928Z [info]: Redis client connected.
+2025-02-22T10:22:40.932Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:22:40.932Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:22:55.283Z [warn]: Redis retry attempt 1. Retrying in 50 ms.
+2025-02-22T10:22:55.347Z [info]: Redis client connected.
+2025-02-22T10:22:55.349Z [warn]: Redis retry attempt 2. Retrying in 100 ms.
+2025-02-22T10:22:55.455Z [warn]: Redis retry attempt 3. Retrying in 150 ms.
+2025-02-22T10:22:55.613Z [warn]: Redis retry attempt 4. Retrying in 200 ms.
+2025-02-22T10:22:55.814Z [warn]: Redis retry attempt 5. Retrying in 250 ms.
+2025-02-22T10:22:56.066Z [warn]: Redis retry attempt 6. Retrying in 300 ms.
+2025-02-22T10:22:56.377Z [warn]: Redis retry attempt 7. Retrying in 350 ms.
+2025-02-22T10:22:56.736Z [warn]: Redis retry attempt 8. Retrying in 400 ms.
+2025-02-22T10:22:57.139Z [warn]: Redis retry attempt 9. Retrying in 450 ms.
+2025-02-22T10:22:57.591Z [warn]: Redis retry attempt 10. Retrying in 500 ms.
+2025-02-22T10:22:58.102Z [warn]: Redis retry attempt 11. Retrying in 550 ms.
+2025-02-22T10:22:58.661Z [info]: Redis client connected.
+2025-02-22T10:22:58.665Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:22:58.666Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:27:55.644Z [info]: Redis client connected.
+2025-02-22T10:27:55.682Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:27:56.353Z [info]: Bot ist online
+2025-02-22T10:27:56.357Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:27:56.415Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T10:27:56.416Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T10:45:32.978Z [info]: Redis client connected.
+2025-02-22T10:45:33.026Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:45:33.534Z [info]: Bot ist online
+2025-02-22T10:45:33.538Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:45:33.598Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T10:45:33.598Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T10:56:13.934Z [info]: Redis client connected.
+2025-02-22T10:56:13.980Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:56:14.523Z [info]: Bot ist online
+2025-02-22T10:56:14.527Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T10:56:14.584Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T10:56:14.585Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T11:10:41.228Z [info]: Redis client connected.
+2025-02-22T11:10:41.274Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T11:10:41.843Z [info]: Bot ist online
+2025-02-22T11:10:41.846Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T11:10:41.914Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T11:10:41.915Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T11:32:16.624Z [info]: Redis client connected.
+2025-02-22T11:32:16.669Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T11:32:17.320Z [info]: Bot ist online
+2025-02-22T11:32:17.324Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T11:32:17.390Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T11:32:17.390Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T11:32:26.437Z [info]: Redis client connected.
+2025-02-22T11:32:26.475Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T11:32:27.118Z [info]: Bot ist online
+2025-02-22T11:32:27.122Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T11:32:27.190Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T11:32:27.191Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T15:59:45.788Z [info]: Redis client connected.
+2025-02-22T15:59:45.848Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T15:59:46.399Z [info]: Bot ist online
+2025-02-22T15:59:46.403Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T15:59:46.502Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T15:59:46.502Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:00:03.353Z [info]: Redis client connected.
+2025-02-22T16:00:03.390Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:00:04.075Z [info]: Bot ist online
+2025-02-22T16:00:04.079Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:00:04.139Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:00:04.139Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:06:18.350Z [info]: Redis client connected.
+2025-02-22T16:06:18.398Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:06:18.961Z [info]: Bot ist online
+2025-02-22T16:06:18.965Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:06:19.024Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:06:19.024Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:06:34.686Z [info]: Redis client connected.
+2025-02-22T16:06:34.722Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:06:35.236Z [info]: Bot ist online
+2025-02-22T16:06:35.241Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:06:35.303Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:06:35.303Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:10:26.244Z [info]: Redis client connected.
+2025-02-22T16:10:26.281Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:10:26.820Z [info]: Bot ist online
+2025-02-22T16:10:26.824Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:10:26.884Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:10:26.884Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:16:40.310Z [info]: Redis client connected.
+2025-02-22T16:16:40.357Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:16:40.858Z [info]: Bot ist online
+2025-02-22T16:16:40.863Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:16:40.922Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:16:40.923Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:20:17.053Z [info]: Redis client connected.
+2025-02-22T16:20:17.094Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:20:17.668Z [info]: Bot ist online
+2025-02-22T16:20:17.673Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:20:17.751Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:20:17.752Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:25:51.589Z [info]: Redis client connected.
+2025-02-22T16:25:51.636Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:25:52.206Z [info]: Bot ist online
+2025-02-22T16:25:52.211Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:25:52.272Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:25:52.272Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:26:04.780Z [info]: Redis client connected.
+2025-02-22T16:26:04.818Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:26:05.505Z [info]: Bot ist online
+2025-02-22T16:26:05.510Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:26:05.571Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:26:05.572Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:26:26.758Z [info]: Redis client connected.
+2025-02-22T16:26:26.796Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:26:27.305Z [info]: Bot ist online
+2025-02-22T16:26:27.309Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:26:27.371Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:26:27.371Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:31:27.466Z [info]: Redis client connected.
+2025-02-22T16:31:27.512Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:31:28.030Z [info]: Bot ist online
+2025-02-22T16:31:28.035Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:31:28.094Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:31:28.094Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:33:11.626Z [info]: Redis client connected.
+2025-02-22T16:33:11.664Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:33:12.155Z [info]: Bot ist online
+2025-02-22T16:33:12.217Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:33:12.217Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:34:03.487Z [info]: Redis client connected.
+2025-02-22T16:34:03.526Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:34:04.359Z [info]: Bot ist online
+2025-02-22T16:34:04.364Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:34:04.429Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:34:04.429Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:34:24.161Z [info]: Redis client connected.
+2025-02-22T16:34:24.200Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:34:24.910Z [info]: Bot ist online
+2025-02-22T16:34:24.915Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:34:24.978Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:34:24.979Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:35:46.057Z [info]: Redis client connected.
+2025-02-22T16:35:46.094Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:35:46.741Z [info]: Bot ist online
+2025-02-22T16:35:46.746Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:35:46.804Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:35:46.805Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:36:06.970Z [info]: Redis client connected.
+2025-02-22T16:36:07.008Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:36:07.541Z [info]: Bot ist online
+2025-02-22T16:36:07.601Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:36:07.602Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:36:29.553Z [info]: Redis client connected.
+2025-02-22T16:36:29.598Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:36:30.108Z [info]: Bot ist online
+2025-02-22T16:36:30.113Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:36:30.172Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:36:30.172Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:41:43.909Z [info]: Redis client connected.
+2025-02-22T16:41:43.959Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:41:44.725Z [info]: Bot ist online
+2025-02-22T16:41:44.730Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:41:44.812Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:41:44.813Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:42:44.176Z [info]: Redis client connected.
+2025-02-22T16:42:44.215Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:42:44.833Z [info]: Bot ist online
+2025-02-22T16:42:44.838Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:42:44.897Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:42:44.898Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:44:42.966Z [info]: Redis client connected.
+2025-02-22T16:44:43.004Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:44:43.682Z [info]: Bot ist online
+2025-02-22T16:44:43.686Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:44:43.746Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:44:43.747Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:48:27.529Z [info]: Redis client connected.
+2025-02-22T16:48:27.576Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:48:28.124Z [info]: Bot ist online
+2025-02-22T16:48:28.128Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:48:28.189Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:48:28.189Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:49:37.771Z [info]: Redis client connected.
+2025-02-22T16:49:37.813Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:49:38.554Z [info]: Bot ist online
+2025-02-22T16:49:38.558Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:49:38.619Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:49:38.619Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:52:04.517Z [info]: Bot ist online
+2025-02-22T16:52:04.545Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:52:04.607Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:52:04.608Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:52:13.938Z [info]: Bot ist online
+2025-02-22T16:52:14.005Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:52:14.005Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:54:28.202Z [info]: Redis client connected.
+2025-02-22T16:54:28.248Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:54:32.134Z [info]: Redis client connected.
+2025-02-22T16:54:32.171Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:54:32.689Z [info]: Bot ist online
+2025-02-22T16:54:32.747Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:54:32.748Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T16:54:37.944Z [info]: Redis client connected.
+2025-02-22T16:54:37.979Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:54:38.525Z [info]: Bot ist online
+2025-02-22T16:54:38.529Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T16:54:38.590Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T16:54:38.591Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:04:27.111Z [info]: Redis client connected.
+2025-02-22T17:04:27.156Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T17:04:27.862Z [info]: Bot ist online
+2025-02-22T17:04:27.866Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T17:04:27.929Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:04:27.930Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:05:48.335Z [info]: Redis client connected.
+2025-02-22T17:05:48.375Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T17:05:48.922Z [info]: Bot ist online
+2025-02-22T17:05:48.926Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T17:05:48.991Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:05:48.992Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:07:25.779Z [info]: Redis client connected.
+2025-02-22T17:07:25.814Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T17:07:26.384Z [info]: Bot ist online
+2025-02-22T17:07:26.390Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T17:07:26.449Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:07:26.449Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:08:04.513Z [info]: Bot ist online
+2025-02-22T17:08:04.542Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T17:08:04.599Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:08:04.600Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:08:14.623Z [info]: Bot ist online
+2025-02-22T17:08:14.652Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T17:08:14.714Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:08:14.714Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:08:33.581Z [info]: Redis client connected.
+2025-02-22T17:08:33.620Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T17:08:34.169Z [info]: Bot ist online
+2025-02-22T17:08:34.174Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T17:08:34.248Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:08:34.248Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:09:12.263Z [info]: Redis client connected.
+2025-02-22T17:09:12.302Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T17:09:12.815Z [info]: Bot ist online
+2025-02-22T17:09:12.820Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T17:09:12.887Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:09:12.887Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:14:28.987Z [info]: Redis client connected.
+2025-02-22T17:14:29.034Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T17:14:29.554Z [info]: Bot ist online
+2025-02-22T17:14:29.559Z [info]: Channel mapping rebuilt successfully.
+2025-02-22T17:14:29.619Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:14:29.619Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:22:51.735Z [info]: Redis client connected.
+2025-02-22T17:22:52.302Z [info]: Bot ist online
+2025-02-22T17:22:52.367Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:22:52.368Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:23:43.033Z [info]: Redis client connected.
+2025-02-22T17:23:43.595Z [info]: Bot ist online
+2025-02-22T17:23:43.657Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:23:43.658Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:23:49.753Z [info]: Redis client connected.
+2025-02-22T17:23:50.359Z [info]: Bot ist online
+2025-02-22T17:23:50.426Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:23:50.427Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:24:05.642Z [info]: Redis client connected.
+2025-02-22T17:24:09.017Z [info]: Redis client connected.
+2025-02-22T17:24:09.631Z [info]: Bot ist online
+2025-02-22T17:24:09.696Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:24:09.697Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:24:13.474Z [info]: Redis client connected.
+2025-02-22T17:24:14.024Z [info]: Bot ist online
+2025-02-22T17:24:14.098Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:24:14.099Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:24:39.373Z [info]: Redis client connected.
+2025-02-22T17:24:42.914Z [info]: Redis client connected.
+2025-02-22T17:24:43.457Z [info]: Bot ist online
+2025-02-22T17:24:43.526Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:24:43.526Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:26:30.248Z [info]: Redis client connected.
+2025-02-22T17:26:30.848Z [info]: Bot ist online
+2025-02-22T17:26:30.913Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:26:30.913Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:26:50.626Z [info]: Redis client connected.
+2025-02-22T17:26:51.344Z [info]: Bot ist online
+2025-02-22T17:26:51.409Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:26:51.410Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:27:20.775Z [info]: Redis client connected.
+2025-02-22T17:27:21.357Z [info]: Bot ist online
+2025-02-22T17:27:21.423Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:27:21.424Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T17:27:25.025Z [info]: Redis client connected.
+2025-02-22T17:27:25.736Z [info]: Bot ist online
+2025-02-22T17:27:25.803Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T17:27:25.803Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:00:38.229Z [info]: Redis client connected.
+2025-02-22T18:00:38.923Z [info]: Bot ist online
+2025-02-22T18:00:38.985Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:00:38.986Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:00:45.800Z [info]: Redis client connected.
+2025-02-22T18:00:46.614Z [info]: Bot ist online
+2025-02-22T18:00:46.679Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:00:46.680Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:02:50.131Z [info]: Redis client connected.
+2025-02-22T18:02:50.837Z [info]: Bot ist online
+2025-02-22T18:02:50.903Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:02:50.903Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:06:55.243Z [info]: Redis client connected.
+2025-02-22T18:06:55.871Z [info]: Bot ist online
+2025-02-22T18:06:55.939Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:06:55.939Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:07:00.329Z [info]: Redis client connected.
+2025-02-22T18:07:00.997Z [info]: Bot ist online
+2025-02-22T18:07:01.060Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:07:01.061Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:07:54.865Z [info]: Redis client connected.
+2025-02-22T18:07:55.494Z [info]: Bot ist online
+2025-02-22T18:07:55.563Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:07:55.564Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:08:31.981Z [info]: Redis client connected.
+2025-02-22T18:08:32.530Z [info]: Bot ist online
+2025-02-22T18:08:32.604Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:08:32.605Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:10:12.640Z [info]: Redis client connected.
+2025-02-22T18:10:13.286Z [info]: Bot ist online
+2025-02-22T18:10:13.351Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:10:13.352Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:10:39.415Z [info]: Redis client connected.
+2025-02-22T18:10:40.132Z [info]: Bot ist online
+2025-02-22T18:10:40.198Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:10:40.198Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:10:46.305Z [info]: Redis client connected.
+2025-02-22T18:10:46.860Z [info]: Bot ist online
+2025-02-22T18:10:46.930Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:10:46.930Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:22:52.364Z [info]: Redis client connected.
+2025-02-22T18:22:53.037Z [info]: Bot ist online
+2025-02-22T18:22:53.101Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:22:53.102Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:23:02.003Z [info]: Redis client connected.
+2025-02-22T18:23:02.597Z [info]: Bot ist online
+2025-02-22T18:23:02.661Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:23:02.661Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:27:00.435Z [info]: Redis client connected.
+2025-02-22T18:27:01.054Z [info]: Bot ist online
+2025-02-22T18:27:01.118Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:27:01.118Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:34:22.366Z [info]: Redis client connected.
+2025-02-22T18:34:22.983Z [info]: Bot ist online
+2025-02-22T18:34:23.048Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:34:23.048Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:34:36.978Z [info]: Redis client connected.
+2025-02-22T18:34:37.602Z [info]: Bot ist online
+2025-02-22T18:34:37.667Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:34:37.667Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:40:55.249Z [info]: Redis client connected.
+2025-02-22T18:40:56.003Z [info]: Bot ist online
+2025-02-22T18:40:56.069Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:40:56.069Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:44:34.403Z [info]: Redis client connected.
+2025-02-22T18:44:34.978Z [info]: Bot ist online
+2025-02-22T18:44:35.070Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:44:35.071Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:44:46.477Z [info]: Redis client connected.
+2025-02-22T18:44:47.125Z [info]: Bot ist online
+2025-02-22T18:44:47.194Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:44:47.195Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:49:21.127Z [info]: Redis client connected.
+2025-02-22T18:49:21.874Z [info]: Bot ist online
+2025-02-22T18:49:21.940Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:49:21.940Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:49:26.644Z [info]: Redis client connected.
+2025-02-22T18:49:27.354Z [info]: Bot ist online
+2025-02-22T18:49:27.419Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:49:27.420Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T18:56:31.225Z [info]: Redis client connected.
+2025-02-22T18:56:31.787Z [info]: Bot ist online
+2025-02-22T18:56:31.868Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T18:56:31.868Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T19:08:33.534Z [info]: Bot ist online
+2025-02-22T19:08:33.653Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T19:08:33.654Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T19:08:52.023Z [info]: Redis client connected.
+2025-02-22T19:10:12.823Z [info]: Redis client connected.
+2025-02-22T19:10:13.437Z [info]: Bot ist online
+2025-02-22T19:10:13.503Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T19:10:13.504Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T19:23:47.661Z [info]: Redis client connected.
+2025-02-22T19:23:48.319Z [info]: Bot ist online
+2025-02-22T19:23:48.392Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T19:23:48.393Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T19:45:43.185Z [info]: Redis client connected.
+2025-02-22T19:45:43.738Z [info]: Bot ist online
+2025-02-22T19:45:43.807Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T19:45:43.807Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T19:45:52.277Z [info]: Redis client connected.
+2025-02-22T19:45:52.797Z [info]: Bot ist online
+2025-02-22T19:45:52.859Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T19:45:52.860Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T20:58:22.695Z [info]: Redis client connected.
+2025-02-22T20:58:23.246Z [info]: Bot ist online
+2025-02-22T20:58:23.311Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T20:58:23.312Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T21:24:56.832Z [info]: Redis client connected.
+2025-02-22T21:24:57.551Z [info]: Bot ist online
+2025-02-22T21:24:57.617Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T21:24:57.618Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T21:26:21.287Z [info]: Redis client connected.
+2025-02-22T21:26:21.981Z [info]: Bot ist online
+2025-02-22T21:26:22.050Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T21:26:22.051Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T21:30:47.167Z [info]: Redis client connected.
+2025-02-22T21:30:47.684Z [info]: Bot ist online
+2025-02-22T21:30:47.748Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T21:30:47.749Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T21:31:24.021Z [info]: Redis client connected.
+2025-02-22T21:31:24.622Z [info]: Bot ist online
+2025-02-22T21:31:24.687Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T21:31:24.687Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T21:46:31.146Z [info]: Redis client connected.
+2025-02-22T21:46:34.803Z [info]: Redis client connected.
+2025-02-22T21:46:35.400Z [info]: Bot ist online
+2025-02-22T21:46:35.465Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T21:46:35.466Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T22:15:23.572Z [info]: Redis client connected.
+2025-02-22T22:15:24.263Z [info]: Bot ist online
+2025-02-22T22:15:24.327Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T22:15:24.327Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T22:23:32.542Z [info]: Redis client connected.
+2025-02-22T22:23:33.144Z [info]: Bot ist online
+2025-02-22T22:23:33.207Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T22:23:33.207Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T22:42:23.962Z [info]: Redis client connected.
+2025-02-22T22:42:24.525Z [info]: Bot ist online
+2025-02-22T22:42:24.591Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T22:42:24.592Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T22:45:05.691Z [info]: Redis client connected.
+2025-02-22T22:45:06.305Z [info]: Bot ist online
+2025-02-22T22:45:06.369Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T22:45:06.370Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T22:46:02.444Z [info]: Redis client connected.
+2025-02-22T22:46:03.018Z [info]: Bot ist online
+2025-02-22T22:46:03.081Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T22:46:03.082Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T22:54:28.706Z [info]: Redis client connected.
+2025-02-22T22:54:29.341Z [info]: Bot ist online
+2025-02-22T22:54:29.405Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T22:54:29.405Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T22:55:09.466Z [info]: Redis client connected.
+2025-02-22T22:55:10.236Z [info]: Bot ist online
+2025-02-22T22:55:10.308Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T22:55:10.308Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T22:55:32.005Z [info]: Redis client connected.
+2025-02-22T22:55:32.739Z [info]: Bot ist online
+2025-02-22T22:55:32.806Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T22:55:32.806Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql
+2025-02-22T22:57:07.268Z [info]: Redis client connected.
+2025-02-22T22:57:07.855Z [info]: Bot ist online
+2025-02-22T22:57:07.917Z [info]: HTTP-Server läuft auf Port 3003
+2025-02-22T22:57:07.917Z [info]: GraphQL-Endpunkt: http://localhost:3003/graphql

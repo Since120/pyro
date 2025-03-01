@@ -1,0 +1,11 @@
+subscription ZoneEvent {
+  zoneEvent {
+    id
+    categoryId
+    name
+    discordVoiceId
+    timestamp
+    eventType
+    message
+  }
+}

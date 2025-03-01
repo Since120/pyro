@@ -1,0 +1,1009 @@
+// apps/api/src/queue/queue.service.ts
+
+import { Injectable, Logger, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
+
+import { Queue, Worker, Job, QueueEvents } from 'bullmq';
+
+import { Inject } from '@nestjs/common';
+
+import { RedisPubSubService } from '../redis/redis-pubsub.service';
+
+import { rateLimits } from '../config/rate-limits.config';
+
+import { CategoryEvent } from '../category/models/category.model';
+
+import { ZoneEvent } from '../zone/models/zone.model';
+
+
+
+// Job-Namen als Konstanten definieren
+
+export const QUEUE_NAMES = {
+
+  CATEGORY: 'discord-category',
+
+  ZONE: 'discord-zone'
+
+};
+
+
+
+// Job-Typen als Konstanten definieren
+
+export const JOB_TYPES = {
+
+  CREATE_CATEGORY: 'create-category',
+
+  UPDATE_CATEGORY: 'update-category',
+
+  DELETE_CATEGORY: 'delete-category',
+
+  CREATE_ZONE: 'create-zone',
+
+  UPDATE_ZONE: 'update-zone',
+
+  DELETE_ZONE: 'delete-zone'
+
+};
+
+
+
+// Typdefinition für Job-Ergebnisse
+
+interface JobResult {
+
+  eventAllowed?: boolean;
+
+  originalEvent?: CategoryEvent | ZoneEvent;
+
+  delayed?: boolean;
+
+  delayMs?: number;
+
+}
+
+
+
+@Injectable()
+
+export class QueueService implements OnModuleInit, OnModuleDestroy {
+
+  private readonly logger = new Logger(QueueService.name);
+
+  private queues: Map<string, Queue> = new Map();
+
+  private workers: Map<string, Worker> = new Map();
+
+  private queueEvents: Map<string, QueueEvents> = new Map();
+
+  
+
+  // Map zum Speichern der letzten Ausführungszeiten pro Kategorie/Zone
+
+  private lastExecutionTimes = new Map<string, number>();
+
+  
+
+  // Map zur Nachverfolgung der Operationen pro Entity im Zeitfenster
+
+  private operationsCounter = new Map<string, { count: number, windowStart: number }>();
+
+
+
+  constructor(
+
+    @Inject('REDIS_CLIENT') private readonly redisClient: any,
+
+    private readonly redisPubSub: RedisPubSubService
+
+  ) {}
+
+
+
+  async onModuleInit() {
+
+    // Initialisiere Queues und Worker
+
+    await this.initializeQueues();
+
+    this.logger.log('Queue-Service erfolgreich initialisiert');
+
+  }
+
+
+
+  async onModuleDestroy() {
+
+    // Cleanup: Alle Queues und Worker schließen
+
+    for (const [name, queue] of this.queues.entries()) {
+
+      this.logger.log(`Schließe Queue: ${name}`);
+
+      await queue.close();
+
+    }
+
+    
+
+    for (const [name, worker] of this.workers.entries()) {
+
+      this.logger.log(`Schließe Worker: ${name}`);
+
+      await worker.close();
+
+    }
+
+    
+
+    for (const [name, events] of this.queueEvents.entries()) {
+
+      this.logger.log(`Schließe Queue-Events: ${name}`);
+
+      await events.close();
+
+    }
+
+  }
+
+
+
+  private async initializeQueues() {
+
+    // Kategorie-Queue initialisieren
+
+    await this.initializeQueue(QUEUE_NAMES.CATEGORY, rateLimits.discord.category);
+
+    
+
+    // Zone-Queue initialisieren
+
+    await this.initializeQueue(QUEUE_NAMES.ZONE, rateLimits.discord.zone);
+
+  }
+
+
+
+  private async initializeQueue(name: string, rateLimit: any) {
+
+    const connection = {
+
+      host: this.redisClient.options.host,
+
+      port: this.redisClient.options.port
+
+    };
+
+
+
+    // Queue erstellen
+
+    const queue = new Queue(name, {
+
+      connection,
+
+      defaultJobOptions: {
+
+        attempts: rateLimit.maxRetries,
+
+        backoff: {
+
+          type: 'exponential',
+
+          delay: rateLimit.backoffDelay
+
+        },
+
+        removeOnComplete: true,
+
+        removeOnFail: 100 // Behalte die letzten 100 fehlgeschlagenen Jobs
+
+      }
+
+    });
+
+    
+
+    // Worker für die Queue erstellen
+
+    const worker = new Worker(name, async (job: Job) => {
+
+      return this.processJob(job, rateLimit);
+
+    }, { connection });
+
+
+
+    // QueueEvents für Ereignisse
+
+    const queueEvents = new QueueEvents(name, { connection });
+
+
+
+    // Event-Listener für Queue-Ereignisse
+
+    queueEvents.on('completed', async ({ jobId, returnvalue }) => {
+
+      this.logger.log(`Job ${jobId} erfolgreich abgeschlossen mit Rückgabewert:`, returnvalue);
+
+      
+
+      try {
+
+        // Bei Erfolg direkt das Event veröffentlichen
+
+        const result = typeof returnvalue === 'string' 
+
+          ? JSON.parse(returnvalue) as JobResult 
+
+          : returnvalue as JobResult;
+
+          
+
+        if (result && result.eventAllowed && result.originalEvent) {
+
+          // Bestimme den Event-Typ (category oder zone) basierend auf der Queue
+
+          const eventType = name === QUEUE_NAMES.CATEGORY ? 'categoryEvent' : 'zoneEvent';
+
+          await this.redisPubSub.publish(eventType, result.originalEvent);
+
+          
+
+          const idField = 'id' in result.originalEvent ? result.originalEvent.id : 'unbekannt';
+
+          this.logger.log(`Event für ${idField} nach erfolgreicher Rate-Limit-Prüfung veröffentlicht`);
+
+        }
+
+      } catch (error) {
+
+        this.logger.error('Fehler beim Verarbeiten des Job-Ergebnisses:', error);
+
+      }
+
+    });
+
+
+
+    queueEvents.on('failed', async ({ jobId, failedReason }) => {
+
+      this.logger.error(`Job ${jobId} fehlgeschlagen: ${failedReason}`);
+
+    });
+
+
+
+    // Worker-Events
+
+    worker.on('completed', (job: Job, result: any) => {
+
+      try {
+
+        // Wenn der Job erfolgreich war und nicht verzögert wurde, aktualisiere die letzte Ausführungszeit
+
+        const parsedResult = typeof result === 'string' ? JSON.parse(result) as JobResult : result as JobResult;
+
+        
+
+        // Extrahiere die ID basierend auf den Job-Daten
+
+        const entityId = job.data.categoryId || job.data.zoneId;
+
+        
+
+        if (entityId && 
+
+            job.data.eventData && 
+
+            job.data.eventData.eventType !== 'queued' && 
+
+            !parsedResult?.delayed) {
+
+          this.lastExecutionTimes.set(entityId, Date.now());
+
+          this.logger.log(`Letzte Ausführungszeit für Entity ${entityId} aktualisiert: ${new Date().toISOString()}`);
+
+        }
+
+      } catch (error) {
+
+        this.logger.error('Fehler beim Verarbeiten des completed Events:', error);
+
+      }
+
+    });
+
+
+
+    // Queue und Events speichern
+
+    this.queues.set(name, queue);
+
+    this.workers.set(name, worker);
+
+    this.queueEvents.set(name, queueEvents);
+
+    this.logger.log(`Queue und Worker für ${name} initialisiert`);
+
+  }
+
+
+
+  /**
+
+   * Verarbeitet einen Job unter Berücksichtigung des Rate-Limits
+
+   */
+
+  private async processJob(job: Job, rateLimit: any): Promise<JobResult> {
+
+    // Extrahiere die relevante ID (categoryId oder zoneId)
+
+    const entityId = job.data.categoryId || job.data.zoneId;
+
+    const eventType = job.data.eventType;
+
+    const eventData = job.data.eventData;
+
+    const queueName = job.queueName;
+
+    
+
+    try {
+
+      // Rate-Limit-Prüfung VOR der Verarbeitung
+
+      const canProcess = await this.checkRateLimit(job, rateLimit);
+
+      if (!canProcess.allowed) {
+
+        // Wenn das Rate-Limit erreicht ist, fügen wir den Job mit Verzögerung erneut hinzu
+
+        this.logger.log(`Rate-Limit erreicht für Entity ${entityId}. Verzögere Job um ${canProcess.delayMs}ms`);
+
+        
+
+        // Veröffentliche ein Event, um das Dashboard zu informieren
+
+        await this.publishRateLimitEvent(eventData, canProcess.delayMs, queueName);
+
+        
+
+        // Job mit Verzögerung erneut zur Queue hinzufügen
+
+        const queue = this.queues.get(queueName);
+
+        if (queue) {
+
+          await queue.add(
+
+            job.name,
+
+            job.data,
+
+            {
+
+              jobId: `${job.id}-delayed`,
+
+              delay: canProcess.delayMs,
+
+              removeOnComplete: true
+
+            }
+
+          );
+
+        }
+
+        
+
+        // Erfolg zurückgeben, damit der Job als abgeschlossen gilt
+
+        return { delayed: true, delayMs: canProcess.delayMs };
+
+      }
+
+      
+
+      // Wenn das Rate-Limit nicht erreicht ist, erlaube das Event
+
+      this.logger.log(`Rate-Limit OK für Entity ${entityId}. Erlaube Event vom Typ ${eventType}`);
+
+      
+
+      // Erfolg zurückgeben mit originalem Event
+
+      return { 
+
+        originalEvent: eventData,
+
+        eventAllowed: true
+
+      };
+
+    } catch (error) {
+
+      this.logger.error(`Fehler beim Verarbeiten des Jobs ${job.id}:`, error);
+
+      throw error;
+
+    }
+
+  }
+
+
+
+  /**
+
+   * Prüft, ob ein Job das Rate-Limit einhält
+
+   */
+
+  /**
+   * Prüft, ob ein Job das Rate-Limit einhält
+   * BUG-FIX: Korrigierte Implementierung für korrekte Zählung der Operationen pro Entity
+   */
+  private async checkRateLimit(job: Job, rateLimit: any): Promise<{ allowed: boolean, delayMs: number }> {
+
+    // Extrahiere die relevante ID (categoryId oder zoneId)
+
+    const entityId = job.data.categoryId || job.data.zoneId;
+
+    const jobName = job.name;
+
+    
+
+    if (!entityId) {
+
+      // Wenn keine Entity-ID vorhanden ist, erlaube die Ausführung
+
+      this.logger.warn(`Job ${job.id} hat keine Entity-ID. Erlaube Ausführung.`);
+
+      return { allowed: true, delayMs: 0 };
+
+    }
+
+    // BUG-FIX: Überprüfung, ob die richtige Konfiguration verwendet wird
+    this.logger.log(`[RATE-LIMIT-CONFIG-DEBUG] Konfiguriertes Limit: ${rateLimit.operations}, Standard: 2`);
+    
+
+    const now = Date.now();
+
+    // Stellen Sie sicher, dass immer ein Wert für operationsLimit definiert ist
+
+    const operationsLimit = rateLimit.operations || 2;
+
+    const windowMs = rateLimit.windowMs || 10 * 60 * 1000; // 10 Minuten als Standard
+
+    
+
+    // Aktuellen Zähler holen oder initialisieren
+
+    let counter = this.operationsCounter.get(entityId);
+
+    
+
+    this.logger.log(`[RATE-LIMIT-INIT] Counter für Entity ${entityId}: ${counter ? `count=${counter.count}, windowStart=${counter.windowStart}` : "nicht vorhanden"}`);
+    // Detailliertes Debug-Logging
+
+    this.logger.log(`[RATE-LIMIT-CHECK] Job ${job.id}, Typ: ${jobName}, Entity: ${entityId}`);
+
+    this.logger.log(`[RATE-LIMIT-CONFIG] Operationslimit: ${operationsLimit}, Zeitfenster: ${windowMs}ms`);
+
+    
+
+    // Prüfen, ob das Zeitfenster abgelaufen ist oder neu erstellt werden muss
+
+    if (!counter || (now - counter.windowStart) >= windowMs) {
+
+      // Neues Zeitfenster starten
+
+      counter = { count: 0, windowStart: now };
+
+      this.operationsCounter.set(entityId, counter);
+
+      this.logger.log(`[RATE-LIMIT-NEW] Neues Zeitfenster für Entity ${entityId} gestartet.`);
+
+    }
+
+    
+
+    // Stellen Sie sicher, dass counter.count immer definiert ist
+
+    if (counter.count === undefined) {
+
+      this.logger.error(`[RATE-LIMIT-ERROR] counter.count ist undefined für Entity ${entityId}. Setze auf 0.`);
+
+      counter.count = 0;
+
+      this.operationsCounter.set(entityId, counter);
+
+    }
+
+    
+
+    // Bisherige Operationen im aktuellen Zeitfenster
+
+    this.logger.log(`[RATE-LIMIT-STATUS] Aktuelle Operationen: ${counter.count}/${operationsLimit}`);
+
+    this.logger.log(`[RATE-LIMIT-WINDOW] Verbleibend: ${Math.round((counter.windowStart + windowMs - now)/1000)}s`);
+
+    
+
+    // Prüfen, ob noch Operationen im Limit erlaubt sind - expliziter Vergleich
+
+    const isUnderLimit = counter.count <= operationsLimit - 1;
+
+    this.logger.log(`[RATE-LIMIT-CHECK] Counter: ${counter.count}, Limit: ${operationsLimit}, Vergleich: ${isUnderLimit}`);
+
+    this.logger.log(`[RATE-LIMIT-DETAIL] JobID: ${job.id}, EntityID: ${entityId}, JobTyp: ${jobName}`);
+    
+
+    if (isUnderLimit) {
+
+      // Operation erlauben und Zähler erhöhen
+
+      const newCount = counter.count + 1;
+
+      counter.count = newCount;
+
+      this.operationsCounter.set(entityId, counter);
+
+      this.logger.log(`[RATE-LIMIT-ALLOWED] Operation für Entity ${entityId} erlaubt. Zähler erhöht: ${newCount}/${operationsLimit}`);
+
+      
+
+      // BUG-FIX: Zusätzliche Überprüfung, ob der Zähler korrekt erhöht wurde
+      this.logger.log(`[RATE-LIMIT-COUNTER-UPDATE] Counter für Entity ${entityId} aktualisiert auf ${counter.count}/${operationsLimit}`);
+      // Letzte Ausführungszeit für andere Berechnungen aktualisieren
+
+      this.lastExecutionTimes.set(entityId, now);
+
+      
+
+      return { allowed: true, delayMs: 0 };
+
+    } else {
+
+      // Limit erreicht, Verzögerung berechnen
+
+      const windowEnd = counter.windowStart + windowMs;
+
+      const delayMs = windowEnd - now;
+
+      
+
+      this.logger.log(`[RATE-LIMIT-BLOCKED] Entity ${entityId}: Limit (${operationsLimit}) erreicht. Zähler: ${counter.count}`);
+
+      this.logger.log(`[RATE-LIMIT-DELAYED] Verzögerung: ${Math.round(delayMs/1000)}s, bis: ${new Date(now + delayMs).toISOString()}`);
+
+      
+
+      return { allowed: false, delayMs: delayMs > 0 ? delayMs : 0 };
+
+    }
+
+  }
+
+
+
+  /**
+
+   * Veröffentlicht ein Rate-Limit-Event an das Dashboard
+
+   */
+
+  private async publishRateLimitEvent(eventData: any, delayMs: number, queueName: string): Promise<void> {
+
+    try {
+
+      const scheduledTime = new Date(Date.now() + delayMs);
+
+      const eventType = queueName === QUEUE_NAMES.CATEGORY ? 'categoryEvent' : 'zoneEvent';
+
+      
+
+      // Rate-Limit-Event erstellen (basierend auf dem ursprünglichen Event)
+
+      const rateLimitEvent: any = {
+
+        id: eventData.id,
+
+        timestamp: new Date().toISOString(),
+
+        eventType: 'rateLimit',
+
+        details: JSON.stringify({
+
+          originalEventType: eventData.eventType,
+
+          delayMs: delayMs,
+
+          delayMinutes: Math.ceil(delayMs / 60000),
+
+          scheduledTime: scheduledTime.toISOString(),
+
+          entityName: eventData.name || ''
+
+        })
+
+      };
+
+      
+
+      // Füge zusätzliche Felder hinzu, die spezifisch für den Typ sind
+
+      if (queueName === QUEUE_NAMES.CATEGORY) {
+
+        rateLimitEvent.guildId = eventData.guildId || '';
+
+        rateLimitEvent.name = eventData.name || '';
+
+        rateLimitEvent.discordCategoryId = eventData.discordCategoryId || '';
+
+      } else {
+
+        rateLimitEvent.categoryId = eventData.categoryId || '';
+
+        rateLimitEvent.name = eventData.name || '';
+
+        rateLimitEvent.discordVoiceId = eventData.discordVoiceId || '';
+
+      }
+
+      
+
+      // Event direkt an das Dashboard senden (nicht an den Bot)
+
+      await this.redisPubSub.publish(eventType, rateLimitEvent);
+
+      
+
+      this.logger.log(`Rate-Limit-Event für Entity ${eventData.id} veröffentlicht. Geplante Ausführung: ${scheduledTime.toISOString()}`);
+
+    } catch (error) {
+
+      this.logger.error(`Fehler beim Veröffentlichen des Rate-Limit-Events:`, error);
+
+    }
+
+  }
+
+
+
+  /**
+
+   * Fügt ein Kategorie-Event zur Verarbeitung hinzu
+
+   */
+
+  async processEvent(eventType: string, eventData: CategoryEvent | ZoneEvent): Promise<void> {
+
+    const isZoneEvent = 'discordVoiceId' in eventData;
+
+    const queueName = isZoneEvent ? QUEUE_NAMES.ZONE : QUEUE_NAMES.CATEGORY;
+
+    const queue = this.queues.get(queueName);
+
+    
+
+    if (!queue) {
+
+      throw new Error(`Queue ${queueName} nicht gefunden`);
+
+    }
+
+
+
+    // Eindeutige Job-ID basierend auf Entity-ID und aktuellem Zeitstempel
+
+    const timestamp = Date.now();
+
+    const jobId = `${eventType}:${eventData.id}:${timestamp}`;
+
+
+
+    // Gemeinsame Job-Daten
+
+    const jobData: any = {
+
+      eventType,
+
+      eventData, // Das eigentliche Event
+
+      timestamp: new Date().toISOString(),
+
+    };
+
+    
+
+    // Spezifische Felder je nach Event-Typ
+
+    if (isZoneEvent) {
+
+      jobData.zoneId = eventData.id;
+
+    } else {
+
+      jobData.categoryId = eventData.id;
+
+    }
+
+
+
+    // Füge das Event zur Verarbeitung hinzu
+
+    const job = await queue.add(eventType, jobData, { jobId });
+
+
+
+    this.logger.log(`Event vom Typ ${eventType} für Entity ${eventData.id} zur Queue ${queueName} hinzugefügt (Job-ID: ${job.id})`);
+
+    
+
+    // Informiere das Dashboard über die Warteschlange (optional)
+
+    if (eventData.eventType !== 'queued') {
+
+      const queuedEventData: any = {
+
+        id: eventData.id,
+
+        timestamp: new Date().toISOString(),
+
+        eventType: 'queued',
+
+        details: JSON.stringify({
+
+          jobId: job.id,
+
+          estimatedDelay: await this.getEstimatedDelay(eventData.id),
+
+          originalEventType: eventData.eventType
+
+        })
+
+      };
+
+      
+
+      // Füge spezifische Felder basierend auf dem Event-Typ hinzu
+
+      if (isZoneEvent) {
+
+        const zoneEvent = eventData as ZoneEvent;
+
+        queuedEventData.categoryId = zoneEvent.categoryId || '';
+
+        queuedEventData.name = zoneEvent.name || '';
+
+        queuedEventData.discordVoiceId = zoneEvent.discordVoiceId || '';
+
+        await this.redisPubSub.publish('zoneEvent', queuedEventData);
+
+      } else {
+
+        const categoryEvent = eventData as CategoryEvent;
+
+        queuedEventData.guildId = categoryEvent.guildId || '';
+
+        queuedEventData.name = categoryEvent.name || '';
+
+        queuedEventData.discordCategoryId = categoryEvent.discordCategoryId || '';
+
+        await this.redisPubSub.publish('categoryEvent', queuedEventData);
+
+      }
+
+    }
+
+  }
+
+  
+
+  /**
+
+   * Berechnet die geschätzte Verzögerung für eine Entity
+
+   */
+
+  private async getEstimatedDelay(entityId: string): Promise<number> {
+
+    const now = Date.now();
+
+    const counter = this.operationsCounter.get(entityId);
+
+    
+
+    // Keine Verzögerung, wenn noch kein Counter existiert oder Zeitfenster abgelaufen
+
+    if (!counter) {
+
+      return 0;
+
+    }
+
+    
+
+    // Wir verwenden die Kategorie-Limits als Standard
+
+    const rateLimit = rateLimits.discord.category;
+
+    const operationsLimit = rateLimit.operations || 2;
+
+    const windowMs = rateLimit.windowMs || 10 * 60 * 1000;
+
+    
+
+    // Wenn das Zeitfenster abgelaufen ist oder noch Operationen verfügbar sind
+
+    if ((now - counter.windowStart) >= windowMs || counter.count < operationsLimit) {
+
+      return 0;
+
+    }
+
+    
+
+    // Berechne die verbleibende Zeit im aktuellen Fenster
+
+    const windowEnd = counter.windowStart + windowMs;
+
+    return Math.max(0, windowEnd - now);
+
+  }
+
+
+
+  /**
+
+   * KOMPATIBILITÄTSMETHODE: Fügt einen Job zur Kategorie-Queue hinzu
+
+   * Diese Methode ist für die Kompatibilität mit bestehendem Code und ruft intern processEvent auf
+
+   */
+
+  async addCategoryJob(
+
+    type: string, 
+
+    data: any, 
+
+    categoryId: string, 
+
+    jobOptions: any = {}
+
+  ) {
+
+    this.logger.log(`Kompatibilitätsaufruf: addCategoryJob für Kategorie ${categoryId}`);
+
+    
+
+    // Erstelle ein CategoryEvent aus den rohen Daten
+
+    const eventData: CategoryEvent = {
+
+      id: categoryId,
+
+      guildId: data.guildId || '',
+
+      name: data.name || '',
+
+      discordCategoryId: data.discordCategoryId || '',
+
+      timestamp: new Date().toISOString(),
+
+      eventType: this.mapJobTypeToEventType(type)
+
+    };
+
+    
+
+    // Rufe die neue Methode processEvent auf
+
+    await this.processEvent(type, eventData);
+
+    
+
+    // Dummy-Job-Objekt zurückgeben für Kompatibilität
+
+    return { id: `${type}:${categoryId}:${Date.now()}` };
+
+  }
+
+
+
+  /**
+
+   * Fügt einen Job zur Zone-Queue hinzu
+
+   */
+
+  async addZoneJob(
+
+    type: string, 
+
+    data: any, 
+
+    zoneId: string, 
+
+    jobOptions: any = {}
+
+  ) {
+
+    this.logger.log(`addZoneJob für Zone ${zoneId}`);
+
+    
+
+    // Erstelle ein ZoneEvent aus den rohen Daten
+
+    const eventData: ZoneEvent = {
+
+      id: zoneId,
+
+      categoryId: data.categoryId || '',
+
+      name: data.name || '',
+
+      discordVoiceId: data.discordVoiceId || '',
+
+      timestamp: new Date().toISOString(),
+
+      eventType: this.mapJobTypeToEventType(type)
+
+    };
+
+    
+
+    // Rufe die neue Methode processEvent auf
+
+    await this.processEvent(type, eventData);
+
+    
+
+    // Dummy-Job-Objekt zurückgeben für Kompatibilität
+
+    return { id: `${type}:${zoneId}:${Date.now()}` };
+
+  }
+
+  
+
+  /**
+
+   * Mappt einen Job-Typ auf einen Event-Typ
+
+   */
+
+  private mapJobTypeToEventType(jobType: string): string {
+
+    switch (jobType) {
+
+      case JOB_TYPES.CREATE_CATEGORY:
+
+      case JOB_TYPES.CREATE_ZONE:
+
+        return 'created';
+
+      case JOB_TYPES.UPDATE_CATEGORY:
+
+      case JOB_TYPES.UPDATE_ZONE:
+
+        return 'updated';
+
+      case JOB_TYPES.DELETE_CATEGORY:
+
+      case JOB_TYPES.DELETE_ZONE:
+
+        return 'deleted';
+
+      default:
+
+        return 'unknown';
+
+    }
+
+  }
+
+}
